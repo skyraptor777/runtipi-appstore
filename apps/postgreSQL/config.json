@@ -1,0 +1,47 @@
+{
+  "$schema": "../schema.json",
+  "name": "PostgreSQL",
+  "id": "postgres",
+  "available": true,
+  "short_desc": "PostgreSQL is a powerful, open-source relational database system.",
+  "author": "PostgreSQL Global Development Group",
+  "port": 5432,
+  "categories": [
+    "development",
+    "data"
+  ],
+  "description": "PostgreSQL is an open-source relational database management system (RDBMS) emphasizing extensibility and SQL compliance. It is designed to handle a range of workloads, from single machines to data warehouses or web services with many concurrent users.",
+  "tipi_version": 1,
+  "version": "14.0",
+  "source": "https://github.com/postgres/postgres",
+  "website": "https://www.postgresql.org/",
+  "exposable": true,
+  "no_gui": true,
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Postgres User",
+      "max": 50,
+      "min": 3,
+      "required": true,
+      "env_variable": "POSTGRES_USER"
+    },
+    {
+      "type": "password",
+      "label": "Postgres Password",
+      "max": 50,
+      "min": 10,
+      "required": true,
+      "env_variable": "POSTGRES_PASSWORD"
+    },
+    {
+      "type": "text",
+      "label": "Database Name",
+      "max": 50,
+      "min": 1,
+      "required": true,
+      "env_variable": "POSTGRES_DB"
+    }
+  ],
+  "supported_architectures": ["arm64", "amd64"]
+}
