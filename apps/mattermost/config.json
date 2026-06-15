@@ -9,7 +9,7 @@
   "no_gui": false,
   "tipi_version": 1,
   "version": "9.8.0",
-  "categories": ["social", "communication"],
+  "categories": ["social"],
   "description": "Mattermost is an open-source, self-hostable online chat service with file sharing, search, and integrations. It is designed as an internal chat for organisations and companies.",
   "short_desc": "Open source Slack alternative",
   "author": "Mattermost, Inc.",
