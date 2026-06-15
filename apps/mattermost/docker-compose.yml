@@ -17,7 +17,7 @@ services:
       - tipi_main_network
 
   mattermost:
-    image: mattermost/mattermost-team-edition:9.8.0
+    image: ngrie/mattermost-team-edition-arm:9.8.0
     depends_on:
       postgres:
         condition: service_healthy
