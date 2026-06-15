@@ -1,0 +1,31 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "Mattermost",
+  "id": "mattermost",
+  "port": 8065,
+  "available": true,
+  "exposable": true,
+  "dynamic_config": true,
+  "force_expose": false,
+  "no_gui": false,
+  "tipi_version": 1,
+  "version": "9.8.0",
+  "categories": ["social", "communication"],
+  "description": "Mattermost is an open-source, self-hostable online chat service with file sharing, search, and integrations. It is designed as an internal chat for organisations and companies.",
+  "short_desc": "Open source Slack alternative",
+  "author": "Mattermost, Inc.",
+  "source": "https://github.com/mattermost/mattermost",
+  "website": "https://mattermost.com",
+  "form_fields": [
+    {
+      "type": "random",
+      "label": "Database Password",
+      "min": 32,
+      "env_variable": "DB_PASSWORD"
+    }
+  ],
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1720000000000,
+  "updated_at": 1720000000000,
+  "min_tipi_version": "4.0.0"
+}
