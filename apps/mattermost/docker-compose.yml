@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: mattermost
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: mattermost
+    volumes:
+      - ${APP_DATA_DIR}/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: pg_isready -U mattermost -d mattermost
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - tipi_main_network
+
+  mattermost:
+    image: mattermost/mattermost-team-edition:9.8.0
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      MM_SQLSETTINGS_DRIVERNAME: postgres
+      MM_SQLSETTINGS_DATASOURCE: postgres://mattermost:${DB_PASSWORD}@postgres:5432/mattermost?sslmode=disable&connect_timeout=10
+      MM_SERVICESETTINGS_SITEURL: https://${APP_DOMAIN}
+      MM_SERVICESETTINGS_LISTENADDRESS: :8065
+      MM_FILESETTINGS_DIRECTORY: /mattermost/data
+      MM_LOGSETTINGS_FILELOCATION: /mattermost/logs
+    volumes:
+      - ${APP_DATA_DIR}/data:/mattermost/data
+      - ${APP_DATA_DIR}/logs:/mattermost/logs
+      - ${APP_DATA_DIR}/config:/mattermost/config
+      - ${APP_DATA_DIR}/plugins:/mattermost/plugins
+      - ${APP_DATA_DIR}/client_plugins:/mattermost/client/plugins
+    restart: unless-stopped
+    networks:
+      - tipi_main_network
+    x-runtipi:
+      is_main: true
+      internal_port: 8065
+
+x-runtipi:
+  schema_version: 2
